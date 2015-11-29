@@ -11,7 +11,7 @@
     <title>User Login</title>
 </head>
 <body>
-     <form action="<%=request.getContextPath()%>/CheckServlet" method="post">
+     <form action="<%=request.getContextPath()%>/LoginServlet" method="post">
          UserName:<input type="text" name="uname"/><br/>
          PassWord:<input type="password" name="upwd"/><br/>
          <input type="submit" name="Login"/>

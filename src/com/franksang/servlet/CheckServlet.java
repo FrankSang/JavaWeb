@@ -22,29 +22,36 @@ public class CheckServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //super.doPost(req, resp);
         String username=req.getParameter("uname");
-        String password= req.getParameter("upwd");
+        String password=req.getParameter("upwd");
+        System.out.println("===="+username+"======"+password);
         RequestDispatcher rd=null;
         String forward=null;
 
         if(username==null || password==null)
         {
             req.setAttribute("msg","用户名或者密码为空");
-            rd=req.getRequestDispatcher("/pages/faile.jsp");
+            rd=req.getRequestDispatcher("/pages/faile2.jsp");
             rd.forward(req,resp);
         }else{
             User user= new User();
             user.setUname(username);
             user.setUpwd(password);
+            System.out.println("===="+username+"======"+password);
             boolean login=new CheckUserService().check(user);
             if(login)
             {
-                rd=req.getRequestDispatcher("/pages/sucess.jsp");
-                rd.forward(req,resp);
+                forward="/pages/sucess2.jsp";
+                //rd=req.getRequestDispatcher("");
+                //rd.forward(req,resp);
             }else
             {
-                rd=req.getRequestDispatcher("/pages/faile.jsp");
-                rd.forward(req,resp);
+                req.setAttribute("msg","用户名密码校验失败，请重新输入！");
+                forward="/pages/faile2.jsp";
+                //rd=req.getRequestDispatcher("/pages/faile.jsp");
+                //rd.forward(req,resp);
             }
+            rd=req.getRequestDispatcher(forward);
+            rd.forward(req,resp);
         }
 
 
@@ -52,6 +59,6 @@ public class CheckServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req,resp );
+        //doPost(req,resp );
     }
 }
