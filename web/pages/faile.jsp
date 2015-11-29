@@ -16,6 +16,6 @@
 UserName:<%= request.getParameter("uname") %> <br/>
 PassWord:<%= request.getParameter("upwd") %> <br/>
 msg:<%= request.getAttribute("msg")%> <br/>
-<a href="Login.jsp">返回登录界面</a><br/>
+<a href="<%= request.getContextPath()%>/pages/Login.jsp">返回登录界面</a><br/>
 </body>
 </html>
