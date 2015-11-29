@@ -1,10 +1,9 @@
-package com.franksang.service;
+package test;
 
 import com.franksang.dao.UserDao;
 import com.franksang.dao.UserDaoImpl;
 import com.franksang.entity.User;
 import com.franksang.utils.JdbcUtils;
-import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -12,24 +11,24 @@ import java.sql.SQLException;
 /**
  * Created by root on 11/29/15.
  */
-public class CheckUserService {
-    private UserDao ud= new UserDaoImpl();
+public class testlogin {
 
+    public static void main(String[] args) {
 
-    public boolean check (User user)
-    {
+        UserDao ud= new UserDaoImpl();
+        User user= new User(1,"FrankSang","swx158048","sangdq25@gmail.com");
         Connection conn=null;
         try {
-            conn=JdbcUtils.getInstance().getConnection();
+            conn= JdbcUtils.getInstance().getConnection();
             conn.setAutoCommit(false);
-            while(ud.get(conn,user).next())
-            {
-                return true;
-            }
+            /*while(ud.get(conn,user).next())
+            {*/
+                System.out.println("logincheck====="+true);
+           /* }*/
         } catch (SQLException e) {
             e.printStackTrace();
             try{
-               conn.rollback();
+                conn.rollback();
             }
             catch(SQLException e2){
                 e2.printStackTrace();
@@ -38,7 +37,7 @@ public class CheckUserService {
         } finally {
             JdbcUtils.getInstance().free(null,null,conn);
         }
-
-        return false;
     }
-}
+
+    }
+

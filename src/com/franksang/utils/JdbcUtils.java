@@ -6,7 +6,7 @@ import java.sql.*;
  * Created by root on 11/29/15.
  */
 public final class JdbcUtils {
-    private String url = "dbc:sqlserver://192.168.83.129:1433;databaseName=FrankSang;user=sa;password=abcd-1234";
+    private String url = "jdbc:sqlserver://192.168.83.129:1433;databaseName=FrankSang;user=sa;password=abcd-1234";
     private String user = "sa";
     private String password = "abcd-1234";
     private static JdbcUtils Instance = null;
